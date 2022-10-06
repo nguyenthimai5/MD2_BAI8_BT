@@ -1,61 +1,71 @@
 package Refactor_Tennis_Game;
 
 public class TennisGame {
-    public static String getScore(String player1Name, String player2Name, int m_score1, int m_score2) {
-        String score = "";
+
+    public static final int BASE_SCORE = 0;
+    public static final int FIRST_SCORE = 1;
+    public static final int SECOND_SCORE = 2;
+    public static final int THIRD_SCORE = 3;
+    public static final int ZEZO_SCORE = 0;
+    public static final int ONE_SCORE = 1;
+    public static final int TWO_SCORE = 2;
+    public static final int THREE_SCORE = 3;
+
+    public static String getScore(String player1Name, String player2Name, int first_player_score, int second_player_score) {
+        String player_score = "";
         int tempScore=0;
-        if (m_score1==m_score2)
+        if (first_player_score==second_player_score)
         {
-            switch (m_score1)
+            switch (first_player_score)
             {
-                case 0:
-                    score = "Love-All";
+                case BASE_SCORE:
+                    player_score = "Love-All";
                     break;
-                case 1:
-                    score = "Fifteen-All";
+                case FIRST_SCORE:
+                    player_score = "Fifteen-All";
                     break;
-                case 2:
-                    score = "Thirty-All";
+                case SECOND_SCORE:
+                    player_score = "Thirty-All";
                     break;
-                case 3:
-                    score = "Forty-All";
+                case THIRD_SCORE:
+                    player_score = "Forty-All";
                     break;
                 default:
-                    score = "Deuce";
+                    player_score = "Deuce";
                     break;
             }
         }
-        else if (m_score1>=4 || m_score2>=4)
+        else if (first_player_score>=4 || second_player_score>=4)
         {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
+            int minusResult = first_player_score-second_player_score;
+            if (minusResult==1) player_score ="Advantage player1";
+            else if (minusResult ==-1) player_score ="Advantage player2";
+            else if (minusResult>=2) player_score = "Win for player1";
+            else player_score ="Win for player2";
         }
         else
         {
             for (int i=1; i<3; i++)
             {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
+                if (i==1) tempScore = first_player_score;
+                else { player_score+="-"; tempScore = second_player_score;}
                 switch(tempScore)
                 {
-                    case 0:
-                        score+="Love";
+                    case ZEZO_SCORE:
+                        player_score+="Love";
                         break;
-                    case 1:
-                        score+="Fifteen";
+                    case ONE_SCORE:
+                        player_score+="Fifteen";
                         break;
-                    case 2:
-                        score+="Thirty";
+                    case TWO_SCORE:
+                        player_score+="Thirty";
                         break;
-                    case 3:
-                        score+="Forty";
+                    case THREE_SCORE:
+                        player_score+="Forty";
                         break;
                 }
             }
         }
-        return score;
+        return player_score;
     }
 }
